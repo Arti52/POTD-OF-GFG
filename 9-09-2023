@@ -1,0 +1,22 @@
+//Given a Binary Search Tree. Your task is to complete the function which will return the Kth largest element without doing any modification in Binary Search Tree.
+//Time Complexity->O(H) and Space Complexity->O(1).
+Node* help(Node *root,int & K)
+    {
+        if(root==NULL) return NULL;
+        Node* ans=help(root->right,K);
+        if(ans!=NULL)
+          return ans;
+         K--;
+         if(K==0)
+            return root;
+         return help(root->left,K);
+        
+        
+    }
+    int kthLargest(Node *root, int K)
+    {
+        Node* ans;
+        ans=help(root, K);
+        if(ans==NULL) return -1;
+        return ans->data;
+    }
